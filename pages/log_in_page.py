@@ -7,7 +7,7 @@ class LogIn(Page):
     EMAIL = (By.CSS_SELECTOR, "[type='email']")
     PASSWORD = (By.CSS_SELECTOR, "[type='password']")
     CLICK_CONTINUE = (By.CSS_SELECTOR, "[class='login-button w-button']")
-    SETTINGS = (By.CSS_SELECTOR, "a[href='/settings'][class*='menu-button-block']")
+    SETTINGS = (By.CSS_SELECTOR, "[href='/settings'][class*='menu-button-block']")
 
     def input_info(self):
         self.input_text('cal_chui@yahoo.com', *self.EMAIL)
@@ -15,5 +15,5 @@ class LogIn(Page):
         self.click(*self.CLICK_CONTINUE)
 
 
-    def click_settings(self):
-        self.click(*self.SETTINGS)
+    # def click_settings(self):
+    #     self.click(*self.SETTINGS)

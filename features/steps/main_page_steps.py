@@ -1,13 +1,13 @@
 from time import sleep
 from selenium.webdriver.common.by import By
 from behave import given, when, then
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
-# EMAIL = (By.CSS_SELECTOR, "[type='email']")
-# PASSWORD = (By.CSS_SELECTOR, "[type='password']")
-# CLICK_CONTINUE = (By.CSS_SELECTOR, "[class='login-button w-button']")
-# SETTINGS = (By.CSS_SELECTOR, "a[href='/settings'][class*='menu-button-block']")
-# CONNECT_THE_COMPANY = (By.CSS_SELECTOR, "a[href='/book-presentation'][class*='button-link-menu w-in']")
+
+SETTINGS = (By.CSS_SELECTOR, "a[href='/settings'][class*='menu-button-block']")
+# CONNECT_THE_COMPANY = (By.CSS_SELECTOR, "[href='/book-presentation'][class*='button-link-menu w-in']")
 # LINKS = (By.CSS_SELECTOR, "[class='page-setting-block w-inline-block']")
 
 @given('Open Reelly webpage')
@@ -23,14 +23,21 @@ def login(context):
     # context.driver.find_element(*PASSWORD).send_keys('Careerist1234')
     # context.driver.find_element(*CLICK_CONTINUE).click()
     context.app.log_in_page.input_info()
-    sleep(5)
+    # login = WebDriverWait(context.driver, 20).until(
+    #     EC.element_to_be_clickable(CLICK_CONTINUE)
+    # )
+    # login.click()
+
 
 @then('Click on settings option')
 def click_settings(context):
     # context.driver.find_element(*SETTINGS).click()
-    context.app.log_in_page.click_settings()
-    sleep(2)
-
+    # context.app.log_in_page.click_settings()
+    # sleep(3)
+    setting = WebDriverWait(context.driver, 20).until(
+        EC.element_to_be_clickable(SETTINGS)
+    )
+    setting.click()
 
 # @then('Verify Connect the company')
 # def verify_connect(context):

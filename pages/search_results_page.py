@@ -11,7 +11,7 @@ class SearchResult(Page):
     @then('Verify Connect the company')
     def verify_connect(context):
         expected_value = 'Connect the company'
-        actual_value = context.driver.find_element(By.CSS_SELECTOR, "a[href='/book-presentation'][class*='button-link-menu w-in']").text
+        actual_value = context.driver.find_element(By.CSS_SELECTOR, "[href='/book-presentation'][class*='button-link-menu w-in']").text
 
         assert expected_value == actual_value, f'{expected_value} is not equal to {actual_value}'
 
