@@ -5,44 +5,42 @@ from app.application import Application
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
 
+
 def browser_init(context):
     """
     :param context: Behave context
     # """
 
-                        #CHROME
+    # CHROME
     # driver_path = ChromeDriverManager().install()
     # service = Service(executable_path=r'C:\Users\edc_p\Downloads\internship-project\chromedriver.exe')
     # context.driver = webdriver.Chrome(service=service)
-
-    # context.driver.maximize_window()
-    # context.driver.implicitly_wait(4)
-    # context.app = Application(context.driver)
-
-
-                        #FIRE FOX
-    # service = Service(executable_path=r'C:\Users\edc_p\Downloads\internship-project\geckodriver.exe')
-    # context.driver = webdriver.Firefox(service=service)
     #
     # context.driver.maximize_window()
     # context.driver.implicitly_wait(4)
     # context.app = Application(context.driver)
-    # context.driver.quit()
 
+    # FIRE FOX
+    service = Service(executable_path='./geckodriver.exe')
+    context.driver = webdriver.Firefox(service=service)
 
-                    ## HEADLESS MODE ####
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    service = Service(executable_path=r'C:\Users\edc_p\Downloads\internship-project\chromedriver.exe')
-    context.driver = webdriver.Chrome(
-        options=options,
-        service=service
-    )
-
-    ############PUT BIGGER WINDOW SIZE WHEN RUNNING HEADLESS TO SEE ALL WEBPAGE TO SEARCH FOR ELEMENTS###########
-    context.driver.set_window_size(1280, 1280)
-    # context.driver.maximize_window()
+    context.driver.maximize_window()
+    context.driver.implicitly_wait(4)
     context.app = Application(context.driver)
+
+    ## HEADLESS MODE ####
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('headless')
+    # service = Service(executable_path=r'C:\Users\edc_p\Downloads\internship-project\chromedriver.exe')
+    # context.driver = webdriver.Chrome(
+    #     options=options,
+    #     service=service
+    # )
+    #
+    # ############PUT BIGGER WINDOW SIZE WHEN RUNNING HEADLESS TO SEE ALL WEBPAGE TO SEARCH FOR ELEMENTS###########
+    # context.driver.set_window_size(1280, 1280)
+    # # context.driver.maximize_window()
+    # context.app = Application(context.driver)
 
 
 def before_scenario(context, scenario):
