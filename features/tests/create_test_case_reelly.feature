@@ -8,3 +8,5 @@ Feature: Make Test Case for Reelly Webpage
     Then Verify Connect the company
     Then Verify 11 options
 
+###  behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/main_page_ui.feature ###
+###  allure serve test_results/ ##### to put the data in allure webpage
