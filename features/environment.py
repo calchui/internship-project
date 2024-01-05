@@ -7,20 +7,22 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.options import Options
 
 
-# def browser_init(context):
-def browser_init(context, scenario_name="User can go to settings and see the right number of UI elements"):  # add scenario_name if you want to use it in Browserstack
+def browser_init(context):
+# def browser_init(context, scenario_name="User can go to settings and see the right number of UI elements"):  # add scenario_name if you want to use it in Browserstack
     """
     :param context: Behave context
     # """
 
     # CHROME
-    # driver_path = ChromeDriverManager().install()
-    # service = Service(executable_path=r'C:\Users\edc_p\Downloads\internship-project\chromedriver.exe')
-    # context.driver = webdriver.Chrome(service=service)
+    driver_path = ChromeDriverManager().install()
+    service = Service(executable_path=r'C:\Users\edc_p\Downloads\internship-project\chromedriver.exe')
+    context.driver = webdriver.Chrome(service=service)
 
-    # context.driver.maximize_window()
-    # context.driver.implicitly_wait(4)
-    # context.app = Application(context.driver)
+    context.driver.maximize_window()
+    context.driver.implicitly_wait(4)
+    context.app = Application(context.driver)
+
+
 
     # FIRE FOX
     # service = Service(executable_path='./geckodriver.exe')
@@ -45,20 +47,39 @@ def browser_init(context, scenario_name="User can go to settings and see the rig
     # context.app = Application(context.driver)
 
 
-    ## BROWSERSTACK ###
-    # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
-    bs_user = 'calvinchui_KznApV'
-    bs_key = 'jnsDt2A5reBRUdpQEGoX'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
 
-    options = Options()
-    bstack_options = {
+################    MOBILE DEVICES  ####################
+
+    # mobile_emulation = {"deviceName": "iPhone XR"}
+    #
+    # chrome_options = webdriver.ChromeOptions()
+    #
+    # chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    #
+    # context.driver = webdriver.Chrome(options=chrome_options)
+    #
+    # context.driver.maximize_window()
+    #
+    # context.driver.implicitly_wait(4)
+    #
+    # context.app = Application(context.driver)
+
+
+
+######          BROWSERSTACK           ########################
+    # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
+    # bs_user = 'calvinchui_KznApV'
+    # bs_key = 'jnsDt2A5reBRUdpQEGoX'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
 
 #######         WINDOWS               #############
-        'os': 'windows',
-        'osVersion': '11',
-        'browserName': 'Chrome',
-        'sessionName': scenario_name
+        # 'os': 'windows',
+        # 'osVersion': '11',
+        # 'browserName': 'Chrome',
+        # 'sessionName': scenario_name
 
 #######         MAC                 #############
         # "os": "OS X",
@@ -72,18 +93,18 @@ def browser_init(context, scenario_name="User can go to settings and see the rig
         # "browserName": "Firefox",
         # "browserVersion": "latest",
         # "sessionName": scenario_name
-        }
+    #     }
+    #
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
+    #
+    # context.driver.maximize_window()
+    # context.driver.implicitly_wait(4)
+    # context.driver.wait = WebDriverWait(context.driver, 10)
+    #
+    # context.app = Application(context.driver)
 
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
-
-    context.driver.maximize_window()
-    context.driver.implicitly_wait(4)
-    context.driver.wait = WebDriverWait(context.driver, 10)
-
-    context.app = Application(context.driver)
-
-
+###############################################################
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)

@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 
-SETTINGS = (By.CSS_SELECTOR, "a[href='/settings'][class*='menu-button-block']")
+SETTINGS = (By.CSS_SELECTOR, "[href='/settings'][class='menu-photo_avatar w-inline-block']")
 # CONNECT_THE_COMPANY = (By.CSS_SELECTOR, "[href='/book-presentation'][class*='button-link-menu w-in']")
 # LINKS = (By.CSS_SELECTOR, "[class='page-setting-block w-inline-block']")
 
@@ -34,7 +34,7 @@ def click_settings(context):
     # context.driver.find_element(*SETTINGS).click()
     # context.app.log_in_page.click_settings()
     # sleep(3)
-    setting = WebDriverWait(context.driver, 20).until(
+    setting = WebDriverWait(context.driver, 30).until(
         EC.element_to_be_clickable(SETTINGS)
     )
     setting.click()
